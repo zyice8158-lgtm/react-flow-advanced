@@ -1,0 +1,18 @@
+{
+    "sourceFile": "src/components/LyricsInputNode.jsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1763598369909,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1763598369909,
+            "name": "Commit-0",
+            "content": "import { useState } from 'react';\r\nimport { Handle, Position } from 'reactflow';\r\nimport './NodeStyles.css';\r\n\r\nfunction LyricsInputNode() {\r\n  const [lyrics, setLyrics] = useState(`Here is an original R&B song that captures the essence of the millennial generation's zeitgeist, ennui, with a touch of technological futurism and psychedelic elements:\r\n(Digital Dreamscape)\r\n\r\nVerse 1\r\nIn the glow of my screen, I feel so serene,\r\nBut the emptiness inside, it's like a silent scream.`);\r\n\r\n  return (\r\n    <div className=\"custom-node lyrics-node\">\r\n      <div className=\"node-header\">\r\n        <span className=\"node-icon\">📝</span>\r\n        <span className=\"node-title\">Paste your lyrics here...</span>\r\n      </div>\r\n      <div className=\"node-content\">\r\n        <textarea\r\n          value={lyrics}\r\n          onChange={(e) => setLyrics(e.target.value)}\r\n          className=\"lyrics-input\"\r\n          placeholder=\"Here is an original R&B song that captures the essence of the millennial generation's zeitgeist...\"\r\n          rows=\"8\"\r\n        />\r\n      </div>\r\n      <Handle type=\"source\" position={Position.Right} id=\"text\" />\r\n    </div>\r\n  );\r\n}\r\n\r\nexport default LyricsInputNode;\r\n\r\n"
+        }
+    ]
+}

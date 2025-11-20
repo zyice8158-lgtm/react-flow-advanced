@@ -1,0 +1,85 @@
+.node-palette {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  border: 1px solid #e5e7eb;
+  max-width: 280px;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.palette-header {
+  padding: 12px 16px;
+  border-bottom: 1px solid #e5e7eb;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 12px 12px 0 0;
+}
+
+.palette-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: white;
+}
+
+.palette-content {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.palette-node-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  background: white;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 13px;
+  font-weight: 500;
+  color: #1f2937;
+  text-align: left;
+}
+
+.palette-node-btn:hover {
+  transform: translateX(4px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-width: 2px;
+}
+
+.palette-node-icon {
+  font-size: 18px;
+  min-width: 24px;
+  text-align: center;
+}
+
+.palette-node-label {
+  flex: 1;
+  font-weight: 600;
+}
+
+/* Scrollbar styles */
+.node-palette::-webkit-scrollbar {
+  width: 6px;
+}
+
+.node-palette::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 0 12px 12px 0;
+}
+
+.node-palette::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+
+.node-palette::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
