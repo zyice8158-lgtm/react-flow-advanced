@@ -10,6 +10,7 @@ import ReactFlow, {
   useEdgesState,
   useNodesState,
   ReactFlowProvider,
+  useReactFlow,
 } from 'reactflow';
 
 import ImageToVideoNode from './components/ImageToVideoNode';
@@ -75,7 +76,9 @@ function Flow() {
   const {
     nodes: historyNodes,
     edges: historyEdges,
+    viewport: historyViewport,
     pushHistory,
+    pushViewport,
     undo,
     redo,
     canUndo,
@@ -85,6 +88,7 @@ function Flow() {
 
   const [nodes, setNodes, onNodesChange] = useNodesState(historyNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(historyEdges);
+  const { setViewport, getViewport } = useReactFlow();
   const panelGroup = usePanelGroup();
   
   // 使用ref来跟踪是否是程序触发的更新
@@ -95,10 +99,13 @@ function Flow() {
     isInternalUpdate.current = true;
     setNodes(historyNodes);
     setEdges(historyEdges);
+    if (historyViewport) {
+      setViewport(historyViewport, { duration: 0 });
+    }
     setTimeout(() => {
       isInternalUpdate.current = false;
     }, 0);
-  }, [historyNodes, historyEdges, setNodes, setEdges]);
+  }, [historyNodes, historyEdges, historyViewport, setNodes, setEdges, setViewport]);
 
   useEffect(() => {
     setNodes((nds) => panelGroup.inject(nds))
@@ -290,6 +297,7 @@ function Flow() {
         onNodesChange={onNodesChange}
         onEdgesChange={onEdgesChange}
         onConnect={onConnect}
+        onMoveEnd={() => pushViewport(getViewport())}
         isValidConnection={isValidConnection}
         nodeTypes={nodeTypes}
         edgeTypes={edgeTypes}
