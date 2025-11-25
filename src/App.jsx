@@ -27,6 +27,7 @@ import { useHistory } from './hooks/useHistory';
 import { validateConnection } from './utils/nodeValidation';
 import { executeWorkflow, ExecutionStatus } from './utils/executionEngine';
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { usePanelGroup } from './hooks/usePanelGroup';
 import PanelQNode from './components/PanelQNode';
 import PanelGroupNode from './components/PanelGroupNode';
 
@@ -83,10 +84,7 @@ function Flow() {
 
   const [nodes, setNodes, onNodesChange] = useNodesState(historyNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(historyEdges);
-  const [contentChoice, setContentChoice] = useState('A');
-  const [focusTarget, setFocusTarget] = useState('P');
-  const [leftLetter, setLeftLetter] = useState('P');
-  const [qLetter, setQLetter] = useState('Q');
+  const panelGroup = usePanelGroup();
   
   // 使用ref来跟踪是否是程序触发的更新
   const isInternalUpdate = useRef(false);
@@ -102,35 +100,8 @@ function Flow() {
   }, [historyNodes, historyEdges, setNodes, setEdges]);
 
   useEffect(() => {
-    setNodes(nds => nds.map(node => {
-      if (node.type === 'panelGroup') {
-        return {
-          ...node,
-          data: {
-            ...node.data,
-            onToggle: (c) => setContentChoice(prev => prev === c ? '' : c),
-            onSetFocusP: () => setFocusTarget('P'),
-            focus: focusTarget,
-            letterP: leftLetter,
-            activeContent: contentChoice,
-          }
-        }
-      }
-      if (node.type === 'panelQ') {
-        return {
-          ...node,
-          data: {
-            ...node.data,
-            onSetFocus: () => setFocusTarget('Q'),
-            onSwap: () => { setLeftLetter(qLetter); setQLetter(leftLetter); },
-            focus: focusTarget,
-            letter: qLetter,
-          }
-        }
-      }
-      return node
-    }))
-  }, [contentChoice, focusTarget, leftLetter, qLetter, setNodes])
+    setNodes((nds) => panelGroup.inject(nds))
+  }, [panelGroup.inject, setNodes])
 
   // 监听节点和边的变化，记录到历史
   useEffect(() => {

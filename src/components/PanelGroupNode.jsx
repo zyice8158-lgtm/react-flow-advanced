@@ -1,13 +1,14 @@
 import { Handle, Position } from 'reactflow'
 import NodeActions from './NodeActions'
 import './NodeStyles.css'
+import { getModeClass } from '../utils/panelUtils'
 
 function PanelGroupNode({ id, data, selected }) {
   const isFocusedP = data?.focus === 'P'
   const letterP = data?.letterP || 'P'
   const content = data?.activeContent ?? ''
 
-  const modeClass = content === 'A' ? 'a-visible' : content === 'B' ? 'b-visible' : 'collapsed'
+  const modeClass = getModeClass(content)
 
   return (
     <div className={`custom-node panel-group-node ${modeClass} ${selected ? 'selected-node' : ''}`}>
