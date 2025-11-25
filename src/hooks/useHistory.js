@@ -1,40 +1,25 @@
 import { useState, useCallback, useEffect } from 'react';
-import { areGraphEqual, viewportEqual } from '../utils/historyUtils'
 
 const MAX_HISTORY = 50; // 最多保存50步历史记录
 
 export function useHistory(initialNodes, initialEdges) {
   const [history, setHistory] = useState({
     past: [],
-    present: { nodes: initialNodes, edges: initialEdges, viewport: { x: 0, y: 0, zoom: 1 } },
+    present: { nodes: initialNodes, edges: initialEdges },
     future: [],
   });
 
-  // 添加新图状态到历史记录（忽略仅选择变化）
+  // 添加新状态到历史记录
   const pushHistory = useCallback((nodes, edges) => {
     setHistory((prev) => {
-      if (areGraphEqual(prev.present.nodes, prev.present.edges, nodes, edges)) return prev
-      const newPast = [...prev.past, prev.present].slice(-MAX_HISTORY)
+      const newPast = [...prev.past, prev.present].slice(-MAX_HISTORY);
       return {
         past: newPast,
-        present: { nodes, edges, viewport: prev.present.viewport },
-        future: [],
-      }
-    })
-  }, [])
-
-  // 记录视口变化（平移/缩放）
-  const pushViewport = useCallback((viewport) => {
-    setHistory((prev) => {
-      if (viewportEqual(prev.present.viewport, viewport)) return prev
-      const newPast = [...prev.past, prev.present].slice(-MAX_HISTORY)
-      return {
-        past: newPast,
-        present: { ...prev.present, viewport },
-        future: [],
-      }
-    })
-  }, [])
+        present: { nodes, edges },
+        future: [], // 新操作会清空future
+      };
+    });
+  }, []);
 
   // 撤销
   const undo = useCallback(() => {
@@ -72,7 +57,7 @@ export function useHistory(initialNodes, initialEdges) {
   const resetHistory = useCallback((nodes, edges) => {
     setHistory({
       past: [],
-      present: { nodes, edges, viewport: { x: 0, y: 0, zoom: 1 } },
+      present: { nodes, edges },
       future: [],
     });
   }, []);
@@ -110,9 +95,7 @@ export function useHistory(initialNodes, initialEdges) {
   return {
     nodes: history.present.nodes,
     edges: history.present.edges,
-    viewport: history.present.viewport,
     pushHistory,
-    pushViewport,
     undo,
     redo,
     resetHistory,
