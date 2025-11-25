@@ -195,3 +195,4 @@ function WorkflowControls({ resetHistory, undo, redo, canUndo, canRedo, onExecut
 }
 
 export default WorkflowControls;
+// 顶部工作流控制条：保存/加载/清空/撤销重做/执行/结果开关

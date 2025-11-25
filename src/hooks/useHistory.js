@@ -103,3 +103,4 @@ export function useHistory(initialNodes, initialEdges) {
     canRedo: history.future.length > 0,
   };
 }
+// 画布历史栈：记录节点/边变更，支持撤销/重做与防抖

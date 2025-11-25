@@ -1,3 +1,4 @@
+// 文本到文本节点：输入提示、选择模型，左右句柄为text
 import { useState } from 'react';
 import { Handle, Position } from 'reactflow';
 import NodeActions from './NodeActions';
@@ -49,4 +50,3 @@ You are a professional pop music MV director, specializing in psychedelic and ex
 }
 
 export default TextToTextNode;
-

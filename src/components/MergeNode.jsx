@@ -58,3 +58,4 @@ function MergeNode({ id }) {
 }
 
 export default MergeNode;
+// 合并节点：合并多路输入信号

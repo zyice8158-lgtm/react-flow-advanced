@@ -1,3 +1,4 @@
+// Panel组状态钩子：集中管理A/B切换、焦点与P/Q内容互换，并提供inject注入节点data
 import { useCallback, useState } from 'react'
 
 export function usePanelGroup() {
@@ -56,4 +57,3 @@ export function usePanelGroup() {
 
   return { inject }
 }
-

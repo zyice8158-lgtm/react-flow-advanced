@@ -1,3 +1,4 @@
+// 条件分支节点：输入布尔条件，输出true/false两个句柄
 import { useState } from 'react';
 import { Handle, Position } from 'reactflow';
 import NodeActions from './NodeActions';

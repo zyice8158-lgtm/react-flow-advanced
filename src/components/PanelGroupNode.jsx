@@ -1,3 +1,4 @@
+// 组合节点：左侧(P+A/B按钮)与右侧大面板(显示A/B)，拖动整体移动
 import { Handle, Position } from 'reactflow'
 import NodeActions from './NodeActions'
 import './NodeStyles.css'

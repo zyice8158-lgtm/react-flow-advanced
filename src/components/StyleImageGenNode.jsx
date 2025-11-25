@@ -66,4 +66,4 @@ function StyleImageGenNode({ id }) {
 }
 
 export default StyleImageGenNode;
-
+// 风格图生成节点：接收text生成image，包含风格选择UI

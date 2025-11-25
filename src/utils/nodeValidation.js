@@ -162,3 +162,4 @@ export function getTypeColor(type) {
       return '#9ca3af';
   }
 }
+// 连接校验：定义各节点句柄类型与兼容规则，提供validateConnection

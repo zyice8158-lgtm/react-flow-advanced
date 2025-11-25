@@ -87,3 +87,4 @@ const ExecutionPanel = ({ isOpen, onClose, executionResults, isExecuting }) => {
 };
 
 export default ExecutionPanel;
+// 执行结果面板：显示每个节点的执行状态与输出

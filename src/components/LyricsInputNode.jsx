@@ -42,4 +42,4 @@ But the emptiness inside, it's like a silent scream.`);
 }
 
 export default LyricsInputNode;
-
+// 歌词输入节点：提供初始文本并输出text句柄

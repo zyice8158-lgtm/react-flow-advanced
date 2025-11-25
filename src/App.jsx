@@ -1,3 +1,4 @@
+// 应用入口页面：注册节点类型、初始化React Flow画布与执行/历史/连接等交互逻辑
 import 'reactflow/dist/style.css';
 import './App.css';
 

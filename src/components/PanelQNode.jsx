@@ -1,3 +1,4 @@
+// 独立黄色节点：显示Q，点击切换焦点并触发与P的内容互换
 import NodeActions from './NodeActions'
 import './NodeStyles.css'
 

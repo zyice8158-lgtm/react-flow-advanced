@@ -186,3 +186,4 @@ export async function executeWorkflow(nodes, edges, onNodeStart, onNodeComplete,
     throw error;
   }
 }
+// 执行引擎：拓扑排序节点、聚合输入并模拟各类型节点的输出

@@ -61,4 +61,4 @@ function ImageToVideoNode({ id }) {
 }
 
 export default ImageToVideoNode;
-
+// 图片转视频节点：输入image输出video

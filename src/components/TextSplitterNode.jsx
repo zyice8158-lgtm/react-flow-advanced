@@ -38,4 +38,4 @@ function TextSplitterNode({ id }) {
 }
 
 export default TextSplitterNode;
-
+// 文字分割节点：接收text，输出text1/text2两个支路

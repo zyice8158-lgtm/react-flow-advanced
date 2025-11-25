@@ -1,3 +1,4 @@
+// 侧边节点面板：用于向画布添加节点模板
 import { useReactFlow } from 'reactflow';
 import './NodePalette.css';
 
