@@ -1,0 +1,18 @@
+{
+    "sourceFile": "src/components/TextToTextNode.jsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1763598369909,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1763598369909,
+            "name": "Commit-0",
+            "content": "import { useState } from 'react';\r\nimport { Handle, Position } from 'reactflow';\r\nimport './NodeStyles.css';\r\n\r\nfunction TextToTextNode() {\r\n  const [instruction, setInstruction] = useState(`Task:\r\nYou are a professional pop music MV director, specializing in psychedelic and experimental artistic visual styles. Please...`);\r\n\r\n  return (\r\n    <div className=\"custom-node task-node\">\r\n      <div className=\"node-header\">\r\n        <div className=\"header-left\">\r\n          <span className=\"node-icon\">📄</span>\r\n          <span className=\"node-title\">Text to Text</span>\r\n        </div>\r\n        <button className=\"icon-btn\">⚙️</button>\r\n        <button className=\"icon-btn close-btn\">●</button>\r\n      </div>\r\n      <div className=\"node-content\">\r\n        <div className=\"field\">\r\n          <label className=\"field-label\">Creative Instruction <span className=\"required\">*</span></label>\r\n          <button className=\"add-pdf-btn\">📄 Add PDF</button>\r\n        </div>\r\n        <textarea\r\n          value={instruction}\r\n          onChange={(e) => setInstruction(e.target.value)}\r\n          className=\"text-input\"\r\n          placeholder=\"Task:\"\r\n          rows=\"3\"\r\n        />\r\n\r\n        <div className=\"field\">\r\n          <label className=\"field-label\">Choose AI Model(s) <span className=\"required\">*</span></label>\r\n        </div>\r\n        <div className=\"model-selector\">\r\n          <button className=\"add-model-btn\">+ Add models</button>\r\n          <div className=\"selected-model\">\r\n            <span>✏️ Grok2</span>\r\n            <button className=\"remove-btn\">⊗</button>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <Handle type=\"target\" position={Position.Left} id=\"text\" />\r\n      <Handle type=\"source\" position={Position.Right} id=\"text\" />\r\n    </div>\r\n  );\r\n}\r\n\r\nexport default TextToTextNode;\r\n\r\n"
+        }
+    ]
+}

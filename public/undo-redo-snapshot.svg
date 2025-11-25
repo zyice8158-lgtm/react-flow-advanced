@@ -1,0 +1,108 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="700" viewBox="0 0 1200 700">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f8fafc"/>
+      <stop offset="100%" stop-color="#eef2ff"/>
+    </linearGradient>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" viewBox="0 0 10 6">
+      <path d="M0,0 L10,3 L0,6 Z" fill="#334155"/>
+    </marker>
+    <marker id="arrow-green" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" viewBox="0 0 10 6">
+      <path d="M0,0 L10,3 L0,6 Z" fill="#16a34a"/>
+    </marker>
+    <marker id="arrow-blue" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" viewBox="0 0 10 6">
+      <path d="M0,0 L10,3 L0,6 Z" fill="#2563eb"/>
+    </marker>
+    <marker id="arrow-orange" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" viewBox="0 0 10 6">
+      <path d="M0,0 L10,3 L0,6 Z" fill="#ea580c"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="1200" height="700" fill="url(#bgGrad)"/>
+
+  <text x="600" y="50" text-anchor="middle" font-family="Inter, system-ui" font-size="28" fill="#0f172a">Zustand 快照模式 Undo / Redo 流程</text>
+
+  <g transform="translate(70,110)">
+    <rect x="0" y="0" width="300" height="520" rx="16" fill="#f1f5f9" stroke="#cbd5e1"/>
+    <text x="150" y="36" text-anchor="middle" font-family="Inter, system-ui" font-size="20" fill="#334155">past 过去快照栈</text>
+    <g transform="translate(35,70)">
+      <rect x="0" y="0" width="230" height="90" rx="8" fill="#e2e8f0" stroke="#94a3b8"/>
+      <text x="115" y="48" text-anchor="middle" font-family="Inter, system-ui" font-size="16" fill="#334155">状态快照 #3</text>
+    </g>
+    <g transform="translate(35,170)">
+      <rect x="0" y="0" width="230" height="90" rx="8" fill="#e2e8f0" stroke="#94a3b8"/>
+      <text x="115" y="48" text-anchor="middle" font-family="Inter, system-ui" font-size="16" fill="#334155">状态快照 #2</text>
+    </g>
+    <g transform="translate(35,270)">
+      <rect x="0" y="0" width="230" height="90" rx="8" fill="#e2e8f0" stroke="#94a3b8"/>
+      <text x="115" y="48" text-anchor="middle" font-family="Inter, system-ui" font-size="16" fill="#334155">状态快照 #1</text>
+    </g>
+    <text x="150" y="490" text-anchor="middle" font-family="Inter, system-ui" font-size="14" fill="#64748b">push / pop</text>
+  </g>
+
+  <g transform="translate(450,180)">
+    <rect x="0" y="0" width="300" height="170" rx="16" fill="#fafafa" stroke="#94a3b8"/>
+    <text x="150" y="36" text-anchor="middle" font-family="Inter, system-ui" font-size="20" fill="#334155">present 当前状态</text>
+    <g transform="translate(25,60)">
+      <rect x="0" y="0" width="250" height="90" rx="10" fill="#eef2ff" stroke="#818cf8"/>
+      <text x="125" y="40" text-anchor="middle" font-family="Inter, system-ui" font-size="16" fill="#3730a3">业务 state</text>
+      <text x="125" y="66" text-anchor="middle" font-family="Inter, system-ui" font-size="13" fill="#6366f1">nodes / edges / count ...</text>
+    </g>
+  </g>
+
+  <g transform="translate(830,110)">
+    <rect x="0" y="0" width="300" height="520" rx="16" fill="#f1f5f9" stroke="#cbd5e1"/>
+    <text x="150" y="36" text-anchor="middle" font-family="Inter, system-ui" font-size="20" fill="#334155">future 未来快照队列</text>
+    <g transform="translate(35,70)">
+      <rect x="0" y="0" width="230" height="90" rx="8" fill="#ffe4e6" stroke="#fb7185"/>
+      <text x="115" y="48" text-anchor="middle" font-family="Inter, system-ui" font-size="16" fill="#9f1239">未来快照 A</text>
+    </g>
+    <g transform="translate(35,170)">
+      <rect x="0" y="0" width="230" height="90" rx="8" fill="#ffe4e6" stroke="#fb7185"/>
+      <text x="115" y="48" text-anchor="middle" font-family="Inter, system-ui" font-size="16" fill="#9f1239">未来快照 B</text>
+    </g>
+    <g transform="translate(35,270)">
+      <rect x="0" y="0" width="230" height="90" rx="8" fill="#ffe4e6" stroke="#fb7185"/>
+      <text x="115" y="48" text-anchor="middle" font-family="Inter, system-ui" font-size="16" fill="#9f1239">未来快照 C</text>
+    </g>
+    <text x="150" y="490" text-anchor="middle" font-family="Inter, system-ui" font-size="14" fill="#64748b">unshift / shift</text>
+  </g>
+
+  <g>
+    <path d="M600 90 Q 600 120 540 150" fill="none" stroke="#16a34a" stroke-width="3" marker-end="url(#arrow-green)"/>
+    <text x="560" y="120" text-anchor="middle" font-family="Inter, system-ui" font-size="16" fill="#166534">setState 封装</text>
+    <circle cx="600" cy="90" r="6" fill="#16a34a"/>
+    <text x="600" y="78" text-anchor="middle" font-family="Inter, system-ui" font-size="12" fill="#166534">将当前推入 past 且清空 future</text>
+  </g>
+
+  <g>
+    <path d="M420 260 C 360 260 360 370 375 410" fill="none" stroke="#2563eb" stroke-width="3" marker-end="url(#arrow-blue)"/>
+    <text x="370" y="290" text-anchor="end" font-family="Inter, system-ui" font-size="16" fill="#1e40af">undo</text>
+    <text x="360" y="330" text-anchor="end" font-family="Inter, system-ui" font-size="12" fill="#1e40af">past.pop → present</text>
+    <text x="360" y="350" text-anchor="end" font-family="Inter, system-ui" font-size="12" fill="#1e40af">current → future.unshift</text>
+  </g>
+
+  <g>
+    <path d="M780 260 C 840 260 840 370 825 410" fill="none" stroke="#ea580c" stroke-width="3" marker-end="url(#arrow-orange)"/>
+    <text x="830" y="290" text-anchor="start" font-family="Inter, system-ui" font-size="16" fill="#9a3412">redo</text>
+    <text x="840" y="330" text-anchor="start" font-family="Inter, system-ui" font-size="12" fill="#9a3412">future.shift → present</text>
+    <text x="840" y="350" text-anchor="start" font-family="Inter, system-ui" font-size="12" fill="#9a3412">current → past.push</text>
+  </g>
+
+  <g transform="translate(410,390)">
+    <rect x="0" y="0" width="380" height="220" rx="16" fill="#ffffff" stroke="#cbd5e1"/>
+    <text x="190" y="32" text-anchor="middle" font-family="Inter, system-ui" font-size="18" fill="#334155">中间件/封装逻辑</text>
+    <g transform="translate(20,60)">
+      <rect x="0" y="0" width="340" height="140" rx="12" fill="#f8fafc" stroke="#94a3b8"/>
+      <text x="20" y="32" font-family="Inter, system-ui" font-size="14" fill="#334155">1. setState: 备份 present → past，清空 future，更新 present</text>
+      <text x="20" y="62" font-family="Inter, system-ui" font-size="14" fill="#334155">2. undo: past.pop → present；旧 present → future.unshift</text>
+      <text x="20" y="92" font-family="Inter, system-ui" font-size="14" fill="#334155">3. redo: future.shift → present；旧 present → past.push</text>
+      <text x="20" y="122" font-family="Inter, system-ui" font-size="14" fill="#334155">4. timestamp: 每次变化写入 now()</text>
+    </g>
+  </g>
+
+  <g>
+    <rect x="80" y="650" width="1040" height="30" rx="8" fill="#0ea5e9"/>
+    <text x="600" y="670" text-anchor="middle" font-family="Inter, system-ui" font-size="14" fill="#f0f9ff">快照模式：直观、简单；适合中小型 state，搭配最大历史条数限制</text>
+  </g>
+</svg>

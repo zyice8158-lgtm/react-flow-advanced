@@ -1,0 +1,18 @@
+{
+    "sourceFile": "src/components/ImageToVideoNode.jsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1763598369911,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1763598369911,
+            "name": "Commit-0",
+            "content": "import { useState } from 'react';\r\nimport { Handle, Position } from 'reactflow';\r\nimport './NodeStyles.css';\r\n\r\nfunction ImageToVideoNode() {\r\n  const [instruction, setInstruction] = useState('psychedelic effects, special effects, illusions, natural movements, cinematic');\r\n  const [aspectRatio, setAspectRatio] = useState('16:9');\r\n\r\n  return (\r\n    <div className=\"custom-node video-node\">\r\n      <div className=\"node-header\">\r\n        <div className=\"header-left\">\r\n          <span className=\"node-icon\">🎬</span>\r\n          <span className=\"node-title\">Image to Video</span>\r\n        </div>\r\n        <button className=\"icon-btn\">⚙️</button>\r\n        <button className=\"icon-btn close-btn\">●</button>\r\n      </div>\r\n      <div className=\"node-content\">\r\n        <div className=\"field\">\r\n          <label className=\"field-label\">Creative Instruction <span className=\"required\">*</span></label>\r\n        </div>\r\n        <textarea\r\n          value={instruction}\r\n          onChange={(e) => setInstruction(e.target.value)}\r\n          className=\"text-input\"\r\n          placeholder=\"psychedelic effects, special effects, illusions, natural movements, cinematic\"\r\n          rows=\"2\"\r\n        />\r\n\r\n        <div className=\"field\">\r\n          <label className=\"field-label\">Aspect Ratio</label>\r\n        </div>\r\n        <select\r\n          value={aspectRatio}\r\n          onChange={(e) => setAspectRatio(e.target.value)}\r\n          className=\"select-input\"\r\n        >\r\n          <option value=\"16:9\">16:9</option>\r\n          <option value=\"1:1\">1:1</option>\r\n          <option value=\"9:16\">9:16</option>\r\n        </select>\r\n\r\n        <div className=\"field\">\r\n          <label className=\"field-label\">Choose AI Model(s) <span className=\"required\">*</span></label>\r\n        </div>\r\n        <div className=\"model-selector\">\r\n          <button className=\"add-model-btn\">+ Add models</button>\r\n          <div className=\"selected-model\">\r\n            <span>🎬 Runway Gen3</span>\r\n            <button className=\"remove-btn\">⊗</button>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <Handle type=\"target\" position={Position.Left} id=\"image\" />\r\n      <Handle type=\"source\" position={Position.Right} id=\"video\" />\r\n    </div>\r\n  );\r\n}\r\n\r\nexport default ImageToVideoNode;\r\n\r\n"
+        }
+    ]
+}
