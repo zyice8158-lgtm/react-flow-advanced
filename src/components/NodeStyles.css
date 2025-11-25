@@ -514,6 +514,10 @@
   box-shadow: 0 0 0 3px #2563eb inset;
 }
 
+.selected-node {
+  border-color: #ef4444 !important;
+}
+
 .panel-buttons {
   position: absolute;
   top: 8px;
@@ -544,4 +548,63 @@
 
 .panel-letter.big {
   font-size: 64px;
+}
+
+/* Panel Group */
+.panel-group-node {
+  border: none;
+  box-shadow: none;
+  background: transparent;
+  display: grid;
+  grid-template-columns: 360px 960px;
+  grid-template-rows: 260px 220px;
+  gap: 16px;
+  padding: 0;
+}
+
+.panel-group-node.collapsed {
+  grid-template-columns: 360px;
+  grid-template-rows: 260px;
+}
+
+.panel-group-node.a-visible,
+.panel-group-node.b-visible {
+  grid-template-columns: 360px 960px;
+  grid-template-rows: 260px 220px;
+}
+
+.group-left {
+  position: relative;
+  border: 2px solid #60a5fa;
+  border-radius: 12px;
+  min-height: 260px;
+  background: #ffffff;
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.group-right {
+  border: 2px solid #3b82f6;
+  border-radius: 12px;
+  min-height: 460px;
+  background: #eef2ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  grid-column: 2;
+  grid-row: 1 / span 2;
+}
+
+.selected-node .group-left,
+.selected-node .group-right {
+  border-color: #ef4444 !important;
+}
+
+.panel-group-node.a-visible .group-right,
+.panel-group-node.b-visible .group-right {
+  min-height: 460px;
+}
+
+.panel-group-node.collapsed .group-left {
+  min-height: 260px;
 }

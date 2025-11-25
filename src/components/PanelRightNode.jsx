@@ -2,7 +2,7 @@ import NodeActions from './NodeActions'
 import './NodeStyles.css'
 
 function PanelRightNode({ id, data }) {
-  const content = data?.activeContent || 'A'
+  const content = data?.activeContent ?? ''
 
   return (
     <div className="custom-node panel-right-node">
@@ -13,4 +13,3 @@ function PanelRightNode({ id, data }) {
 }
 
 export default PanelRightNode
-

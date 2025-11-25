@@ -30,6 +30,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import PanelLeftNode from './components/PanelLeftNode';
 import PanelRightNode from './components/PanelRightNode';
 import PanelQNode from './components/PanelQNode';
+import PanelGroupNode from './components/PanelGroupNode';
 
 // Register custom node types
 const nodeTypes = {
@@ -44,6 +45,7 @@ const nodeTypes = {
   panelLeft: PanelLeftNode,
   panelRight: PanelRightNode,
   panelQ: PanelQNode,
+  panelGroup: PanelGroupNode,
 };
 
 // Register custom edge types
@@ -54,9 +56,9 @@ const edgeTypes = {
 // Initial nodes
 const initialNodes = [
   {
-    id: 'panel-left',
-    type: 'panelLeft',
-    position: { x: 80, y: 100 },
+    id: 'panel-group',
+    type: 'panelGroup',
+    position: { x: 80, y: 80 },
     data: {},
   },
   {
@@ -64,12 +66,7 @@ const initialNodes = [
     type: 'panelQ',
     position: { x: 90, y: 300 },
     data: {},
-  },
-  {
-    id: 'panel-right',
-    type: 'panelRight',
-    position: { x: 360, y: 80 },
-    data: {},
+    style: { zIndex: 1000 },
   },
 ];
 
@@ -110,16 +107,16 @@ function Flow() {
 
   useEffect(() => {
     setNodes(nds => nds.map(node => {
-      if (node.type === 'panelLeft') {
+      if (node.type === 'panelGroup') {
         return {
           ...node,
           data: {
             ...node.data,
-            onContentChange: (c) => setContentChoice(c),
-            onSetFocus: () => setFocusTarget('P'),
-            onSwap: () => { setLeftLetter(qLetter); setQLetter(leftLetter); },
+            onToggle: (c) => setContentChoice(prev => prev === c ? '' : c),
+            onSetFocusP: () => setFocusTarget('P'),
             focus: focusTarget,
-            letter: leftLetter,
+            letterP: leftLetter,
+            activeContent: contentChoice,
           }
         }
       }
@@ -132,15 +129,6 @@ function Flow() {
             onSwap: () => { setLeftLetter(qLetter); setQLetter(leftLetter); },
             focus: focusTarget,
             letter: qLetter,
-          }
-        }
-      }
-      if (node.type === 'panelRight') {
-        return {
-          ...node,
-          data: {
-            ...node.data,
-            activeContent: contentChoice,
           }
         }
       }

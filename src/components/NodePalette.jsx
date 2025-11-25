@@ -13,6 +13,7 @@ const nodeTemplates = [
   { type: 'panelLeft', label: 'Panel P', icon: '🅿️', color: '#60a5fa' },
   { type: 'panelQ', label: 'Panel Q', icon: '🇶', color: '#f59e0b' },
   { type: 'panelRight', label: 'Right Panel', icon: '🅰️', color: '#3b82f6' },
+  { type: 'panelGroup', label: 'Panel Group', icon: '🧩', color: '#3b82f6' },
 ];
 
 function NodePalette() {
