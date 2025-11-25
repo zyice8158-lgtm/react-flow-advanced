@@ -549,6 +549,7 @@
   grid-template-rows: 260px 220px;
   gap: 16px;
   padding: 0;
+  pointer-events: none;
 }
 
 .panel-group-node.collapsed {
@@ -570,6 +571,7 @@
   background: #ffffff;
   grid-column: 1;
   grid-row: 1;
+  pointer-events: auto;
 }
 
 .group-right {
@@ -582,6 +584,7 @@
   justify-content: center;
   grid-column: 2;
   grid-row: 1 / span 2;
+  pointer-events: auto;
 }
 
 .selected-node .group-left,

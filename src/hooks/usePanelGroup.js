@@ -23,7 +23,7 @@ export function usePanelGroup() {
   }, [qLetter])
 
   const inject = useCallback(
-    (nds) =>
+    (nds, setNodes) =>
       nds.map((node) => {
         if (node.type === 'panelGroup') {
           return {
@@ -45,6 +45,22 @@ export function usePanelGroup() {
               ...node.data,
               onSetFocus: focusQ,
               onSwap: swapPQ,
+              onHoverIn: () =>
+                setNodes((nds2) =>
+                  nds2.map((n) =>
+                    n.id === node.id
+                      ? { ...n, style: { ...(n.style || {}), zIndex: 1000 } }
+                      : n
+                  )
+                ),
+              onHoverOut: () =>
+                setNodes((nds2) =>
+                  nds2.map((n) =>
+                    n.id === node.id
+                      ? { ...n, style: { ...(n.style || {}), zIndex: undefined } }
+                      : n
+                  )
+                ),
               focus: focusTarget,
               letter: qLetter,
             },

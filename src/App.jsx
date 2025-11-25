@@ -101,7 +101,7 @@ function Flow() {
   }, [historyNodes, historyEdges, setNodes, setEdges]);
 
   useEffect(() => {
-    setNodes((nds) => panelGroup.inject(nds))
+    setNodes((nds) => panelGroup.inject(nds, setNodes))
   }, [panelGroup.inject, setNodes])
 
   // 监听节点和边的变化，记录到历史

@@ -7,7 +7,12 @@ function PanelQNode({ id, data, selected }) {
   const letter = data?.letter || 'Q'
 
   return (
-    <div className={`custom-node panel-q-node ${isFocused ? 'focused' : ''} ${selected ? 'selected-node' : ''}`} onClick={() => { data?.onSetFocus?.(); data?.onSwap?.(); }}>
+    <div
+      className={`custom-node panel-q-node ${isFocused ? 'focused' : ''} ${selected ? 'selected-node' : ''}`}
+      onClick={() => { data?.onSetFocus?.(); data?.onSwap?.(); }}
+      onMouseEnter={data?.onHoverIn}
+      onMouseLeave={data?.onHoverOut}
+    >
       <NodeActions nodeId={id} />
       <div className="panel-letter">{letter}</div>
     </div>
