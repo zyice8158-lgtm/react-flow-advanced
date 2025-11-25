@@ -10,6 +10,9 @@ const nodeTemplates = [
   { type: 'condition', label: 'Condition', icon: '🔀', color: '#fbbf24' },
   { type: 'loop', label: 'Loop', icon: '🔁', color: '#a78bfa' },
   { type: 'merge', label: 'Merge', icon: '🔗', color: '#34d399' },
+  { type: 'panelLeft', label: 'Panel P', icon: '🅿️', color: '#60a5fa' },
+  { type: 'panelQ', label: 'Panel Q', icon: '🇶', color: '#f59e0b' },
+  { type: 'panelRight', label: 'Right Panel', icon: '🅰️', color: '#3b82f6' },
 ];
 
 function NodePalette() {

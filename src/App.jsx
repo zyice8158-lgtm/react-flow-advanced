@@ -27,6 +27,9 @@ import { useHistory } from './hooks/useHistory';
 import { validateConnection, getHandleType, getTypeColor } from './utils/nodeValidation';
 import { executeWorkflow, ExecutionStatus } from './utils/executionEngine';
 import { useCallback, useEffect, useRef, useState } from 'react';
+import PanelLeftNode from './components/PanelLeftNode';
+import PanelRightNode from './components/PanelRightNode';
+import PanelQNode from './components/PanelQNode';
 
 // Register custom node types
 const nodeTypes = {
@@ -38,6 +41,9 @@ const nodeTypes = {
   condition: ConditionNode,
   loop: LoopNode,
   merge: MergeNode,
+  panelLeft: PanelLeftNode,
+  panelRight: PanelRightNode,
+  panelQ: PanelQNode,
 };
 
 // Register custom edge types
@@ -48,101 +54,27 @@ const edgeTypes = {
 // Initial nodes
 const initialNodes = [
   {
-    id: '1',
-    type: 'lyricsInput',
-    position: { x: 50, y: 50 },
+    id: 'panel-left',
+    type: 'panelLeft',
+    position: { x: 80, y: 100 },
     data: {},
   },
   {
-    id: '2',
-    type: 'textToText',
-    position: { x: 420, y: 80 },
+    id: 'panel-q',
+    type: 'panelQ',
+    position: { x: 90, y: 300 },
     data: {},
   },
   {
-    id: '3',
-    type: 'textSplitter',
-    position: { x: 780, y: 100 },
-    data: {},
-  },
-  {
-    id: '4',
-    type: 'textToText',
-    position: { x: 420, y: 380 },
-    data: {},
-  },
-  {
-    id: '5',
-    type: 'styleImageGen',
-    position: { x: 1100, y: 120 },
-    data: {},
-  },
-  {
-    id: '6',
-    type: 'imageToVideo',
-    position: { x: 1500, y: 100 },
+    id: 'panel-right',
+    type: 'panelRight',
+    position: { x: 360, y: 80 },
     data: {},
   },
 ];
 
 // Initial edges
-const initialEdges = [
-  {
-    id: 'e1-2',
-    source: '1',
-    target: '2',
-    sourceHandle: 'text',
-    targetHandle: 'text',
-    type: 'editable',
-    animated: true,
-    data: { label: 'text' },
-    style: { stroke: '#86efac' },
-  },
-  {
-    id: 'e2-3',
-    source: '2',
-    target: '3',
-    sourceHandle: 'text',
-    targetHandle: 'text',
-    type: 'editable',
-    animated: true,
-    data: { label: 'text' },
-    style: { stroke: '#86efac' },
-  },
-  {
-    id: 'e1-4',
-    source: '1',
-    target: '4',
-    sourceHandle: 'text',
-    targetHandle: 'text',
-    type: 'editable',
-    animated: true,
-    data: { label: 'text' },
-    style: { stroke: '#86efac' },
-  },
-  {
-    id: 'e3-5',
-    source: '3',
-    target: '5',
-    sourceHandle: 'text1',
-    targetHandle: 'text',
-    type: 'editable',
-    animated: true,
-    data: { label: 'text' },
-    style: { stroke: '#86efac' },
-  },
-  {
-    id: 'e5-6',
-    source: '5',
-    target: '6',
-    sourceHandle: 'image',
-    targetHandle: 'image',
-    type: 'editable',
-    animated: true,
-    data: { label: 'image' },
-    style: { stroke: '#93c5fd' },
-  },
-];
+const initialEdges = [];
 
 function Flow() {
   const {
@@ -158,6 +90,10 @@ function Flow() {
 
   const [nodes, setNodes, onNodesChange] = useNodesState(historyNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(historyEdges);
+  const [contentChoice, setContentChoice] = useState('A');
+  const [focusTarget, setFocusTarget] = useState('P');
+  const [leftLetter, setLeftLetter] = useState('P');
+  const [qLetter, setQLetter] = useState('Q');
   
   // 使用ref来跟踪是否是程序触发的更新
   const isInternalUpdate = useRef(false);
@@ -171,6 +107,46 @@ function Flow() {
       isInternalUpdate.current = false;
     }, 0);
   }, [historyNodes, historyEdges, setNodes, setEdges]);
+
+  useEffect(() => {
+    setNodes(nds => nds.map(node => {
+      if (node.type === 'panelLeft') {
+        return {
+          ...node,
+          data: {
+            ...node.data,
+            onContentChange: (c) => setContentChoice(c),
+            onSetFocus: () => setFocusTarget('P'),
+            onSwap: () => { setLeftLetter(qLetter); setQLetter(leftLetter); },
+            focus: focusTarget,
+            letter: leftLetter,
+          }
+        }
+      }
+      if (node.type === 'panelQ') {
+        return {
+          ...node,
+          data: {
+            ...node.data,
+            onSetFocus: () => setFocusTarget('Q'),
+            onSwap: () => { setLeftLetter(qLetter); setQLetter(leftLetter); },
+            focus: focusTarget,
+            letter: qLetter,
+          }
+        }
+      }
+      if (node.type === 'panelRight') {
+        return {
+          ...node,
+          data: {
+            ...node.data,
+            activeContent: contentChoice,
+          }
+        }
+      }
+      return node
+    }))
+  }, [contentChoice, focusTarget, leftLetter, qLetter, setNodes])
 
   // 监听节点和边的变化，记录到历史
   useEffect(() => {
@@ -361,7 +337,7 @@ function Flow() {
         isValidConnection={isValidConnection}
         nodeTypes={nodeTypes}
         edgeTypes={edgeTypes}
-        defaultZoom={0.8}
+        
         minZoom={0.2}
         maxZoom={2}
         fitView
