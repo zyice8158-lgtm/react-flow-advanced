@@ -24,11 +24,9 @@ import NodePalette from './components/NodePalette';
 import WorkflowControls from './components/WorkflowControls';
 import ExecutionPanel from './components/ExecutionPanel';
 import { useHistory } from './hooks/useHistory';
-import { validateConnection, getHandleType, getTypeColor } from './utils/nodeValidation';
+import { validateConnection } from './utils/nodeValidation';
 import { executeWorkflow, ExecutionStatus } from './utils/executionEngine';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import PanelLeftNode from './components/PanelLeftNode';
-import PanelRightNode from './components/PanelRightNode';
 import PanelQNode from './components/PanelQNode';
 import PanelGroupNode from './components/PanelGroupNode';
 
@@ -42,8 +40,6 @@ const nodeTypes = {
   condition: ConditionNode,
   loop: LoopNode,
   merge: MergeNode,
-  panelLeft: PanelLeftNode,
-  panelRight: PanelRightNode,
   panelQ: PanelQNode,
   panelGroup: PanelGroupNode,
 };
