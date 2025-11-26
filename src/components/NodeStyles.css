@@ -602,10 +602,15 @@
 }
 .react-flow__node-panelGroup {
   pointer-events: none;
+  z-index: 6 !important;
 }
 
 .react-flow__node-panelGroup .group-left,
 .react-flow__node-panelGroup .group-right,
 .react-flow__node-panelGroup .panel-buttons {
   pointer-events: auto;
+}
+
+.react-flow__node-panelGroup.selected {
+  z-index: 6 !important;
 }
