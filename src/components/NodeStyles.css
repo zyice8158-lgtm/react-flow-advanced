@@ -600,3 +600,12 @@
 .panel-group-node.collapsed .group-left {
   min-height: 260px;
 }
+.react-flow__node-panelGroup {
+  pointer-events: none;
+}
+
+.react-flow__node-panelGroup .group-left,
+.react-flow__node-panelGroup .group-right,
+.react-flow__node-panelGroup .panel-buttons {
+  pointer-events: auto;
+}
