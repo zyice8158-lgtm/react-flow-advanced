@@ -28,6 +28,8 @@ export function usePanelGroup() {
         if (node.type === 'panelGroup') {
           return {
             ...node,
+            dragHandle: '.group-left, .group-right',
+            style: { ...(node.style || {}), pointerEvents: 'none' },
             data: {
               ...node.data,
               onToggle: toggleContent,
