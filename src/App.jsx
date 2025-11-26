@@ -64,7 +64,6 @@ const initialNodes = [
     type: 'panelQ',
     position: { x: 90, y: 300 },
     data: {},
-    style: { zIndex: 1000 },
   },
 ];
 

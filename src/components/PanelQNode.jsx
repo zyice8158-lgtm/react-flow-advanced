@@ -9,9 +9,7 @@ function PanelQNode({ id, data, selected }) {
   return (
     <div
       className={`custom-node panel-q-node ${isFocused ? 'focused' : ''} ${selected ? 'selected-node' : ''}`}
-      onClick={() => { data?.onSetFocus?.(); data?.onSwap?.(); }}
-      onMouseEnter={data?.onHoverIn}
-      onMouseLeave={data?.onHoverOut}
+      onClick={() => { data?.onSetFocus?.(); data?.onSwap?.(); data?.onBringToFront?.() }}
     >
       <NodeActions nodeId={id} />
       <div className="panel-letter">{letter}</div>

@@ -59,6 +59,15 @@ export function usePanelGroup() {
               ...node.data,
               onToggle: (c) => toggleContent(groupId, c),
               onSetFocusP: () => focusP(groupId),
+              onBringToFront: () =>
+                setNodes((nds2) => {
+                  const index = nds2.findIndex((n) => n.id === node.id)
+                  if (index === -1) return nds2
+                  const reordered = [...nds2]
+                  const [current] = reordered.splice(index, 1)
+                  reordered.push(current)
+                  return reordered
+                }),
               focus,
               letterP: left,
               activeContent: content,
@@ -77,22 +86,15 @@ export function usePanelGroup() {
               groupId,
               onSetFocus: () => focusQ(groupId),
               onSwap: () => swapPQ(groupId, qId),
-              onHoverIn: () =>
-                setNodes((nds2) =>
-                  nds2.map((n) =>
-                    n.id === node.id
-                      ? { ...n, style: { ...(n.style || {}), zIndex: 1000 } }
-                      : n
-                  )
-                ),
-              onHoverOut: () =>
-                setNodes((nds2) =>
-                  nds2.map((n) =>
-                    n.id === node.id
-                      ? { ...n, style: { ...(n.style || {}), zIndex: undefined } }
-                      : n
-                  )
-                ),
+              onBringToFront: () =>
+                setNodes((nds2) => {
+                  const index = nds2.findIndex((n) => n.id === node.id)
+                  if (index === -1) return nds2
+                  const reordered = [...nds2]
+                  const [current] = reordered.splice(index, 1)
+                  reordered.push(current)
+                  return reordered
+                }),
               focus,
               letter: qLetter,
             },

@@ -17,7 +17,7 @@ function PanelGroupNode({ id, data, selected }) {
       <NodeActions nodeId={id} />
       <div
         className={`group-left ${isFocusedP ? 'focused' : ''}`}
-        onMouseDown={(e) => { e.stopPropagation(); setNodes((nds)=> nds.map(n => ({ ...n, selected: n.id === id }))) }}
+        onMouseDown={(e) => { e.stopPropagation(); setNodes((nds)=> nds.map(n => ({ ...n, selected: n.id === id }))); data?.onBringToFront?.() }}
         onClick={() => { data?.onSetFocusP?.(); }}
       >
         <div className="panel-buttons">
@@ -29,7 +29,7 @@ function PanelGroupNode({ id, data, selected }) {
       {content && (
         <div
           className="group-right"
-          onMouseDown={(e) => { e.stopPropagation(); setNodes((nds)=> nds.map(n => ({ ...n, selected: n.id === id }))) }}
+          onMouseDown={(e) => { e.stopPropagation(); setNodes((nds)=> nds.map(n => ({ ...n, selected: n.id === id }))); data?.onBringToFront?.() }}
         >
           <div className="panel-letter big">{content}</div>
         </div>
